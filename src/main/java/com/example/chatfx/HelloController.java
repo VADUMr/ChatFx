@@ -11,11 +11,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-
 public class HelloController{
     private Socket socket;
     private BufferedReader reader;
     private PrintWriter writer;
+    private MusicPlayer musicPlayer = new MusicPlayer();
 
     @FXML
     private TextField ServerIP;
@@ -32,6 +32,7 @@ public class HelloController{
             String IP = ServerIP.getText();
             socket = new Socket(IP, 8888);
             Platform.runLater(() -> messageArea.appendText("Підключено до сервера." + "\n"));
+            musicPlayer.playMusic("/music/background.mp3");
         } catch (IOException e) {
             e.printStackTrace();
         }
