@@ -54,8 +54,13 @@ public class HelloController{
             try {
                 String message;
                 while ((message = reader.readLine()) != null) {
-                    String finalMessage = message;
-                    Platform.runLater(() -> messageArea.appendText(finalMessage + "\n"));
+                    if(message.equals("/Del")) {
+                        Platform.runLater(() -> messageArea.clear());
+                    }
+                    else{
+                        String finalMessage = message;
+                        Platform.runLater(() -> messageArea.appendText(finalMessage + "\n"));
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
